@@ -12,11 +12,11 @@ def create_dict_code(source_code_folder: str, language: str):
     if file_names is None:
         ValueError("No files found: aborting process.")
     print("Loading Student folders")
-    student_dict = {"name": [], "pid": [], "code": []}
+    student_dict = {"name": [], "email": [], "code": []}
 
     # Student name and PID
     for student_folder in file_names:
-        match = re.match(r'^([a-zA-Z]+)_([0-9]+)_', student_folder)
+        match = re.match(r'^([a-zA-Z]+)_([a-zA-Z]+)_', student_folder)
         if match:
             student_dict['name'].append(match.group(1))
             student_dict['name'].append(match.group(2))
