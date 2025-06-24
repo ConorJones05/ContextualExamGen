@@ -51,7 +51,9 @@ CEG accepts a **template test document** (PDF, LaTeX, or structured TXT) and gen
 * Reconstructing final test PDFs suitable for printing or digital upload
 
 ### Languages Currently Suported 
-* Python !Python Logo
+* Python
+* Java (COMING SOON)
+* C (COMING SOON)
 
 ---
 
