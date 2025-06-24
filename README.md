@@ -1,7 +1,3 @@
-Here’s a more **scientific and research-oriented rewrite** of your README using the new name **ContextualExamGen (CEG)**, while retaining the clear structure and purpose of the original. This version adopts academic tone, emphasizes reproducibility, and highlights research value.
-
----
-
 # ContextualExamGen (CEG): A Framework for Personalized Assessment Generation Using LLMs
 
 **ContextualExamGen (CEG)** is an open-source, research-driven framework for generating *individualized programming assessment questions* for large-scale introductory computer science courses. The system programmatically analyzes student submissions, generates both contextually grounded and abstracted questions using large language models (LLMs), and constructs customized test documents. CEG integrates seamlessly with educational tools such as **Gradescope** and leverages **OpenAI’s GPT-4 batch API** for scalable and cost-efficient generation.
