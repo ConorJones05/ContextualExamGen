@@ -1,64 +1,75 @@
-## 🧠 LLM\_Question\_Gen: Individualized Question Generation & Test Assembly for Intro CS Students
-
-**LLM\_Question\_Gen** is a research-oriented and production-capable tool that automatically generates *customized programming questions* for introductory CS students by analyzing their code submissions. The system integrates with **Gradescope**, leverages **OpenAI GPT-4 batch jobs** for scalable question creation, and can even **modify and organize full test documents**, making it a one-stop pipeline for individualized assessment generation.
+Here’s a more **scientific and research-oriented rewrite** of your README using the new name **ContextualExamGen (CEG)**, while retaining the clear structure and purpose of the original. This version adopts academic tone, emphasizes reproducibility, and highlights research value.
 
 ---
 
-### 🔧 What It Does
+# ContextualExamGen (CEG): A Framework for Personalized Assessment Generation Using LLMs
 
-#### ✅ Scrape student code from Gradescope
-
-Using login credentials or a session token, LLM\_Question\_Gen:
-
-* Logs into Gradescope
-* Retrieves all student submissions for a specified assignment
-* Extracts and organizes each student’s Python code
-
-#### ✅ Generate two types of LLM-based questions
-
-1. **Context-Based Questions**
-
-   * Refer directly to student-submitted code
-   * Examples:
-
-     * “What is missing in this function?”
-     * “Why does this loop not terminate as expected?”
-
-2. **Abstracted Questions**
-
-   * Conceptual, based on student activity, without direct code excerpts
-   * Examples:
-
-     * “What does your `merge_sort()` function aim to solve?”
-     * “Could you rewrite your algorithm using iteration instead of recursion?”
-
-#### ✅ Batch LLM Jobs (OpenAI API)
-
-* Uses GPT-4 batch API for **cost-efficient**, **asynchronous** large-scale generation
-* Supports batch retries and logging for auditing results
-
-#### ✅ Test Page Modification and Assembly
-
-* Accepts a **finished test template** as input (e.g., PDF or structured LaTeX/TXT format)
-* Automatically **inserts generated questions** into designated page slots (starting at 0)
-* Reconstructs tests per student for distribution or printing
-* Ensures alignment of:
-
-  * Page numbers
-  * Question placement
-  * Student-specific variants
+**ContextualExamGen (CEG)** is an open-source, research-driven framework for generating *individualized programming assessment questions* for large-scale introductory computer science courses. The system programmatically analyzes student submissions, generates both contextually grounded and abstracted questions using large language models (LLMs), and constructs customized test documents. CEG integrates seamlessly with educational tools such as **Gradescope** and leverages **OpenAI’s GPT-4 batch API** for scalable and cost-efficient generation.
 
 ---
 
-### 🧪 Example Use Case
+## System Capabilities
 
-You’re a CS instructor teaching 300 students. You want to:
+### 1. Submission Collection via Gradescope
 
-1. Download all code for "PA3 – Recursion and Sorting" from Gradescope.
-2. Generate custom comprehension questions for each student.
-3. Integrate those questions into versioned exam documents for final review.
+Using secure session tokens or instructor credentials, CEG:
 
-**One command handles all of this**:
+* Authenticates into Gradescope
+* Retrieves student submissions for a given assignment
+* Parses and stores relevant code artifacts per student
+
+### 2. Dual-Mode Question Generation (via LLMs)
+
+#### **A. Context-Based Questions**
+
+Questions are derived from each student’s unique code submission and address specific implementation errors or comprehension gaps.
+
+> *Examples:*
+>
+> * “Why does this loop not terminate as expected?”
+> * “What is missing in this function implementation?”
+
+#### **B. Abstracted Conceptual Questions**
+
+These are based on the student's engagement with course topics but do not reference their specific code directly.
+
+> *Examples:*
+>
+> * “What does your `merge_sort()` function aim to accomplish?”
+> * “Rewrite your recursive solution using iteration.”
+
+### 3. Scalable Batch Processing (GPT-4)
+
+CEG uses OpenAI's GPT-4 **batch inference API** to:
+
+* Process thousands of questions asynchronously
+* Log inputs/outputs for reproducibility
+* Support automatic retry logic for incomplete generations
+
+### 4. Exam Assembly & Document Modification
+
+CEG accepts a **template test document** (PDF, LaTeX, or structured TXT) and generates customized versions for each student by:
+
+* Inserting personalized questions into designated page slots (e.g., page 0)
+* Aligning question placement and formatting
+* Reconstructing final test PDFs suitable for printing or digital upload
+
+---
+
+## Research Applications
+
+CEG supports experimental and pedagogical research in:
+
+* **Personalized learning** and its impact on student engagement and retention
+* **Automation of formative feedback** at scale
+* **Ethical considerations** in automated grading and question generation
+* **Comparative effectiveness** of context-grounded vs. abstract question framing
+
+---
+
+## Example Use Case
+
+A CS instructor managing 300 students can execute the full pipeline with one command:
 
 ```bash
 python run_pipeline.py \
@@ -70,36 +81,52 @@ python run_pipeline.py \
   --insert_page 0
 ```
 
----
+This command will:
 
-### 🧠 Research Focus
-
-This project supports a paper exploring:
-
-* Whether personalized assessments improve engagement and retention
-* How LLMs can fill gaps in TA feedback during scale
-* Ethical boundaries of automated code analysis and feedback
-* Evaluation of **contextualization vs. abstraction** in question generation
+1. Download all submissions for *PA3* from Gradescope
+2. Generate individualized comprehension questions
+3. Assemble final personalized exams for each student
 
 ---
 
-### 📁 Outputs Per Student
+## Output Per Student
 
-Each student gets:
+Each student receives:
 
-* `student_code.py` – their original code
-* `context_questions.txt` – questions with embedded code
-* `abstracted_questions.txt` – concept-based questions
-* `personalized_exam.pdf` – test file with embedded questions at the right page
+* `student_code.py` — Extracted source code
+* `context_questions.txt` — Personalized, code-linked questions
+* `abstracted_questions.txt` — Higher-level conceptual prompts
+* `personalized_exam.pdf` — Final exam file with embedded questions
+
+---
+
+## Project Goals and Contributions
+
+* Demonstrate a viable system for **scalable, personalized assessment generation**
+* Provide a reproducible pipeline suitable for CS education research
+* Offer instructors a practical tool for **customized test construction**
+* Serve as a benchmark for evaluating LLM-driven educational tooling
 
 ---
 
-### 🧱 Planned Features
+## Roadmap & Planned Extensions
 
-* [ ] Auto-grading answer keys via LLM
-* [ ] Bloom taxonomy tagging (e.g., Apply, Analyze)
-* [ ] Student similarity detection (for question reuse)
-* [ ] LMS (Canvas/Moodle) export format
-* [ ] Plug-and-play UI for instructors
+* Auto-generated answer keys using LLM evaluation
+* Bloom's Taxonomy tagging of questions (e.g., Apply, Analyze, Evaluate)
+* Similarity-based clustering for scalable question reuse
+* Export to LMS-compatible formats (Canvas, Moodle)
+* Instructor-facing user interface for drag-and-drop test assembly
 
 ---
+
+## Citation
+
+If you use ContextualExamGen in your work, please cite the forthcoming paper or reference this repository as:
+
+> Jones, C. (2025). *ContextualExamGen: An Open-Source Framework for Individualized Assessment Using Large Language Models*. UNC Chapel Hill.
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions, feature requests, and feedback from both educators and developers. Please submit an issue or pull request via [GitHub Issues](https://github.com/ConorJones05/ContextualExamGen).
