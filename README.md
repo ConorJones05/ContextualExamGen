@@ -50,6 +50,9 @@ CEG accepts a **template test document** (PDF, LaTeX, or structured TXT) and gen
 * Aligning question placement and formatting
 * Reconstructing final test PDFs suitable for printing or digital upload
 
+### Languages Currently Suported 
+* Python !Python Logo
+
 ---
 
 ## Research Applications
