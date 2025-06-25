@@ -25,19 +25,18 @@ Questions are derived from each student’s unique code submission and address s
 > *Examples:*
 >
 > * “Why does this loop in `your_file` not terminate as expected?”
-```python
-i = 0
-while i > 0:
-print("Hello")
-  i++
-```
+  ```python
+  i = 0
+  while i > 0:
+  print("Hello")
+    i++
+  ```
 > * “What is missing in this function implementation of `my_cool_function` in `your_file`?”
-```pthon
-def my_cool_fucntion(n: int):
-  for i in range(n):
-    ______
-
-```
+  ```python
+  def my_cool_fucntion(n: int):
+    for i in range(n):
+      ______
+  ```
 
 #### **B. Abstracted Conceptual Questions**
 
