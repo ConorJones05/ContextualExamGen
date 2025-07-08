@@ -1,6 +1,6 @@
 # ContextualExamGen (CEG): A Framework for Personalized Assessment Generation Using LLMs
 
-**ContextualExamGen (CEG)** is an open-source, research-driven framework for generating *individualized programming assessment questions* for large-scale introductory computer science courses. The system programmatically analyzes student submissions, generates both contextually grounded and abstracted questions using large language models (LLMs), and constructs customized test documents. CEG integrates seamlessly with educational tools such as **Gradescope** and leverages **OpenAI’s GPT-4 batch API** for scalable and cost-efficient generation.
+**ContextualExamGen (CEG)** is an open-source, research-driven framework for generating *individualized programming assessment questions* for large-scale introductory computer science courses. The system programmatically analyzes student submissions, generates both contextually grounded and abstracted questions using large language models (LLMs), and constructs customized test documents. CEG integrates seamlessly with educational tools such as **Gradescope** and leverages **OpenAI’s batch API** for scalable and cost-efficient generation.
 
 ---
 
@@ -14,16 +14,29 @@ Using secure session tokens or instructor credentials, CEG:
 * Retrieves student submissions for a given assignment
 * Parses and stores relevant code artifacts per student
 
+Pulling data from GitHub for non Gradescope courses (COMING SOON)
+
 ### 2. Dual-Mode Question Generation (via LLMs)
 
 #### **A. Context-Based Questions**
 
-Questions are derived from each student’s unique code submission and address specific implementation errors or comprehension gaps.
+Questions are derived from each student’s unique code submission and address specific implementation steps using snippits from students own code.
 
 > *Examples:*
 >
-> * “Why does this loop not terminate as expected?”
-> * “What is missing in this function implementation?”
+> * “Why does this loop in `your_file` not terminate as expected?”
+  ```python
+  i = 0
+  while i > 0:
+  print("Hello")
+    i++
+  ```
+> * “What is missing in this function implementation of `my_cool_function` in `your_file`?”
+  ```python
+  def my_cool_fucntion(n: int):
+    for i in range(n):
+      ______
+  ```
 
 #### **B. Abstracted Conceptual Questions**
 
@@ -32,11 +45,11 @@ These are based on the student's engagement with course topics but do not refere
 > *Examples:*
 >
 > * “What does your `merge_sort()` function aim to accomplish?”
-> * “Rewrite your recursive solution using iteration.”
+> * “You used recusion in `your_file` why did you use that verus itteration name 2 reasons why.”
 
-### 3. Scalable Batch Processing (GPT-4)
+### 3. Scalable Batch Processing
 
-CEG uses OpenAI's GPT-4 **batch inference API** to:
+CEG can use OpenAI's GPT **batch inference API** to:
 
 * Process thousands of questions asynchronously
 * Log inputs/outputs for reproducibility
@@ -70,7 +83,7 @@ CEG supports experimental and pedagogical research in:
 
 ## Example Use Case
 
-A CS instructor managing 300 students can execute the full pipeline with one command:
+A CS instructor managing 300 students can execute the full pipeline with three commands:
 
 ```bash
 python run_pipeline.py \
@@ -94,7 +107,6 @@ This command will:
 
 Each student receives:
 
-* `student_code.py` — Extracted source code
 * `context_questions.txt` — Personalized, code-linked questions
 * `abstracted_questions.txt` — Higher-level conceptual prompts
 * `personalized_exam.pdf` — Final exam file with embedded questions
@@ -128,6 +140,6 @@ If you use ContextualExamGen in your work, please cite the forthcoming paper or 
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions, feature requests, and feedback from both educators and developers. Please submit an issue or pull request via [GitHub Issues](https://github.com/ConorJones05/ContextualExamGen).
