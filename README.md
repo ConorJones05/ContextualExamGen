@@ -17,7 +17,9 @@ Using secure instructor credentials, CEG:
 Pulling data from GitHub for non Gradescope courses (COMING SOON)
 Integrating with autograders to store data as to not require post scraping (COMING SOON)
 
-### 2. Dual-Mode Question Generation (via LLMs)
+### 2. Pre-Made Question Generation (via LLMs)
+
+A series of prompts have been created allowing you to just worry about: amount of questions and what the student has learned so far while the query fills in the rest.
 
 #### **A. Context-Based Questions**
 
