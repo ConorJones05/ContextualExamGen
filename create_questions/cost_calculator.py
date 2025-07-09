@@ -31,7 +31,7 @@ def count_tokens_single_code(model: str, code: str) -> tuple[int, int] :
             return num_tokens, num_tokens - CACHED_INPUT_TOKEN_CUTOFF
         return num_tokens, 0
     
-def calculate_estimated_cost(model: str, student_code_dict: dict[str, str], batch: bool, context_questions: int, noncontext_questions: int) -> float:
+def calculate_estimated_cost(model: str, student_code_dict: dict[str, str], intital_prompt: str, batch: bool = True) -> float:
     if model not in model_costs.values():
         raise ValueError("model not in the list of availble models please enter a correct model")
     
@@ -54,9 +54,9 @@ def calculate_estimated_cost(model: str, student_code_dict: dict[str, str], batc
     else:
         cost = input_tokens["input_tokens"] * (pricing.input / MILLION_TOKENS)
 
+    cost += intital_prompt * (pricing.input / MILLION_TOKENS)
 
-    #  TODO add inital prompt to the list
-    #  TODO add output calculations
+    cost += OUTPUT_TOKEN_MAX * (pricing)
 
     return round(cost, 2)
         

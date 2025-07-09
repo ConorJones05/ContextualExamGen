@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from tools import write_to_file
 
 load_dotenv()
-fernet_key = os.getenv("FERNET_KEY")
+fernet_key = os.getenv("OPENAI_API_KEY")
 
 
 
@@ -14,29 +14,6 @@ def encript_student_name(file_name: str):
     f = Fernet(fernet_key.encode())
     encrypted_name = f.encrypt(file_name.encode())
     return encrypted_name
-
-# decrypted = f.decrypt(encrypted).decode()
-#     print(f"Decrypted: {decrypted}")
-
-# def create_dict_code(source_code_folder: str, language: str):
-#     """Finds students names, pid, and appends raw links to assignemnts to the dict"""
-#     file_names = os.scandir(source_code_folder)
-#     if file_names is None:
-#         ValueError("No files found: aborting process.")
-#     print("Loading Student folders")
-#     student_dict = {"name": [], "email": [], "code": []}
-
-#     # Student name and PID
-#     for student_folder in file_names:
-#         match = re.match(r'^([a-zA-Z]+)_([a-zA-Z]+)_', student_folder)
-#         if match:
-#             student_dict['name'].append(match.group(1))
-#             student_dict['name'].append(match.group(2))
-
-#         raw_code = load_code(student_code_folder=student_folder)
-#         raw_code = strip_comments_and_docstrings(language)
-#         cleaned_code = remove_long_strings_and_lists(language, raw_code)
-#         student_dict['code'].append(cleaned_code)
 
 
 def load_code(student_code_folder: str):
