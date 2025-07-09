@@ -8,13 +8,14 @@
 
 ### 1. Submission Collection via Gradescope
 
-Using secure session tokens or instructor credentials, CEG:
+Using secure instructor credentials, CEG:
 
 * Authenticates into Gradescope
 * Retrieves student submissions for a given assignment
 * Parses and stores relevant code artifacts per student
 
 Pulling data from GitHub for non Gradescope courses (COMING SOON)
+Integrating with autograders to store data as to not require post scraping (COMING SOON)
 
 ### 2. Dual-Mode Question Generation (via LLMs)
 
@@ -47,6 +48,19 @@ These are based on the student's engagement with course topics but do not refere
 > * “What does your `merge_sort()` function aim to accomplish?”
 > * “You used recusion in `your_file` why did you use that verus itteration name 2 reasons why.”
 
+#### **C. Relective Descision Questions**
+
+These questions reffrence the students code and ask design question
+
+> *Examples:*
+>
+> * Why did you use the contant `STRING_VAL` verus hardcoding the assignment.
+> * Why did you use an exit statment instead of a return `None` in this code
+> ```python
+def cool_function(x: int)
+  x = x +1
+  exit() ```
+
 ### 3. Scalable Batch Processing
 
 CEG can use OpenAI's GPT **batch inference API** to:
@@ -68,6 +82,18 @@ CEG accepts a **template test document** (PDF, LaTeX, or structured TXT) and gen
 * Java (COMING SOON)
 * C (COMING SOON)
 
+### **5. Data Sanitization & Privacy**
+To ensure efficiency, clarity, and student privacy, all code is preprocessed before being sent to GPT. This includes:
+
+* Comment and Docstring Removal
+All inline comments (# ...) and docstrings (""" ... """ or ''' ... ''') are removed to focus GPT on executable logic only.
+
+* Literal & List Stripping
+Long string literals (e.g., ASCII art, embedded documentation) and large list/dictionary initializations are filtered out to reduce token load.
+
+* Student Name Encryption
+Student names are encrypted using the Fernet symmetric encryption scheme from the cryptography library before being sent to the API. This ensures that all personally identifiable information (PII) is protected and compliant with FERPA-style privacy expectations.
+
 ---
 
 ## Research Applications
@@ -83,24 +109,19 @@ CEG supports experimental and pedagogical research in:
 
 ## Example Use Case
 
-A CS instructor managing 300 students can execute the full pipeline with three commands:
+A CS instructor managing 300 students can execute the full pipeline with two commands:
 
 ```bash
-python run_pipeline.py \
+python generate_questions.py \
   --assignment "PA3" \
   --gradescope_email you@school.edu \
-  --gradescope_password mypass \
   --output_dir ./student_tests \
-  --test_template ./base_exam.pdf \
-  --insert_page 0
 ```
-
-This command will:
-
-1. Download all submissions for *PA3* from Gradescope
-2. Generate individualized comprehension questions
-3. Assemble final personalized exams for each student
-
+```bash
+python modify_test.py \
+  --batch_key "BATCH_KEY" \
+  --
+```
 ---
 
 ## Output Per Student
