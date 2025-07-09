@@ -56,10 +56,11 @@ These questions reffrence the students code and ask design question
 >
 > * Why did you use the contant `STRING_VAL` verus hardcoding the assignment.
 > * Why did you use an exit statment instead of a return `None` in this code
-> ```python
+```python
 def cool_function(x: int)
   x = x +1
-  exit() ```
+  exit()
+```
 
 ### 3. Scalable Batch Processing
 
